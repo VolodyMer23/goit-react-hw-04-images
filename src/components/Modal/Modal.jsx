@@ -7,20 +7,19 @@ const modalRoot = document.querySelector('#modal-root');
 
 function Modal({ selectedImage, tags, onClose }) {
   useEffect(() => {
+    const handleKeyDown = e => {
+      if (e.code === 'Escape') {
+        window.removeEventListener('keydown', handleKeyDown);
+        onClose();
+      }
+    };
     window.addEventListener('keydown', handleKeyDown);
     document.body.style.overflow = 'hidden';
-    }, [selectedImage]);
-
-  const handleKeyDown = e => {
-    if (e.code === 'Escape') {
-      window.removeEventListener('keydown', handleKeyDown);
-      onClose();
-    }
-  };
+    return () => {};
+  }, [onClose]);
 
   const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
-      window.removeEventListener('keydown', handleKeyDown);
       onClose();
     }
   };
