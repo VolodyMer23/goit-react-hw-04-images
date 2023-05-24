@@ -9,8 +9,7 @@ function Modal({ selectedImage, tags, onClose }) {
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     document.body.style.overflow = 'hidden';
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedImage]);
+    }, [selectedImage]);
 
   const handleKeyDown = e => {
     if (e.code === 'Escape') {
